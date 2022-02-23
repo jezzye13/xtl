@@ -2,7 +2,7 @@
 #descent into directories. This is why p4 wasn't working
 !*/
 
-!readme.md
+!README.md
 !.gitignore
 !GenerateSharpmakeSolution.bat
 !GenerateSolution.bat
