@@ -1,52 +1,47 @@
 #pragma once
 #include <xtl/string.h>
 #include <xtl/string_view.h>
+#include <string.h> //Note(Dragos): I accidentally deleted our implementation of str functions. Will have to redo
 
 
 namespace xtl
 {
-
-	namespace meta
-	{
-		template <typename T>
-		struct is_string :
-			public std::false_type
-		{
-		};
-
-		template <typename T, typename Allocator>
-		struct is_string<xtl::basic_string<T, Allocator>> :
-			public std::true_type
-		{
-		};
-	}
-
-
-	template <typename String, typename =
-		std::enable_if_t<meta::is_string<String>::value>>
-		uint64_t hash<String>(const String& key)
-	{
-		return byte_hash(key.c_str(), key.size() * sizeof(typename String::char_t));
-	}
-
-
-	template <typename String>
-	void strcpy(String* dst, const String* src)
+	/*template <typename Char>
+	void strcpy(Char* dst, const Char* src)
 	{
 		strcpy(dst.c_str(), src.c_str());
 	}
 
 	template <typename String>
-	void strncpy(String* dst, const String* src, size_t n)
+	void strncpy(Char* dst, const Char* src, size_t n)
+	{
+		strncpy(dst.c_str(), src.c_str(), n);
+	}
+
+	template <typename Char>
+	size_t strlen(const Char* str)
+	{
+		
+	}*/
+
+
+	/*template <typename String>
+	void strcpy(String& dst, const String& src)
+	{
+		strcpy(dst.c_str(), src.c_str());
+	}
+
+	template <typename String>
+	void strncpy(String& dst, const String& src, size_t n)
 	{
 		strncpy(dst.c_str(), src.c_str(), n);
 	}
 
 	template <typename String>
-	size_t strlen(const String* str)
+	size_t strlen(const String& str)
 	{
 		return str.size();
-	}
+	}*/
 
 
 	template <typename String1, typename String2>

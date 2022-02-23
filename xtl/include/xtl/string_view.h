@@ -28,13 +28,9 @@ namespace xtl
 
 		auto size() const
 		{
-			return m_length;
+			return length;
 		}
 
-		auto length() const
-		{
-			return m_length;
-		}
 
 		char_t* c_str() const
 		{

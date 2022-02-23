@@ -3,6 +3,7 @@
 #include <xtl/math/angle.h>
 #include <xtl/strong_type.h>
 #include <xtl/meta/operators.h>
+#include <xtl/string.h>
 #include <xtl/tagged_union.h>
 
 #include <iostream>
@@ -56,6 +57,28 @@ public:
 
 
 
+struct Example
+{
+	using Allocator = xtl::linear_allocator<xtl::auto_allocator<100, alignof(char)>>;
+	Allocator allocator;
+	xtl::string<Allocator> str1;
+	xtl::string<Allocator> str2;
+
+	Example() :
+		str1(&allocator),
+		str2(&allocator)
+	{
+		allocator.reserve(100, alignof(char));
+		//same buffer, one after the other
+		str1.reserve(50);
+		str2.reserve(50);
+		str1.assign("Bruh1");
+		str2.assign("Bruh2");
+		printf("%s\n", str2.c_str());
+	}
+};
+
+
 
 int main()
 {
@@ -75,6 +98,8 @@ int main()
 		auto& obj = objects[i].as<GameObject>();
 		obj.update(obj, 1.f);
 	}
+
+	Example ex;
 
 	return 0;
 }
