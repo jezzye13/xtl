@@ -1,0 +1,16 @@
+*
+#descent into directories. This is why p4 wasn't working
+!*/
+
+!.gitignore
+!GenerateSharpmakeSolution.bat
+!GenerateSolution.bat
+!main.sharpmake.cs
+
+!external/**
+
+!xtl/src/**
+!xtl/include/**
+
+!test/src/**
+!test/include/**
