@@ -66,7 +66,7 @@ namespace xtl
 			{
 				m_allocator->free(m_str);
 			}
-			if (str.m_length + 1 > m_capacity)
+			if (str.m_length + 1 > m_capacity) //Note(Dragos): Null terminated string support should be dropped
 			{
 				reserve(size * 2, false);
 
