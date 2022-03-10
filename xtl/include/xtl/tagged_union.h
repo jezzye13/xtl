@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 #include <utility>
-#include <cassert>c
+#include <cassert>
 
 namespace xtl
 {
