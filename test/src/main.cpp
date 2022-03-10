@@ -5,7 +5,7 @@
 #include <xtl/meta/operators.h>
 #include <xtl/string.h>
 #include <xtl/tagged_union.h>
-
+#include <xtl/sparse_set.h>
 #include <iostream>
 
 
@@ -18,9 +18,6 @@ enum class Type
 
 class GameObject;
 using UpdateFn = void(*)(GameObject&, float);
-
-
-
 class GameObject
 {
 protected:
@@ -83,10 +80,12 @@ struct Example
 int main()
 {
 	using UGameObject = xtl::tagged_union<Type, GameObject, Enemy>;
-
+	using Allocator = xtl::auto_allocator<10 * sizeof(UGameObject), alignof(UGameObject)>;
+	Allocator alloc;
 	constexpr size_t count = 25;
 	UGameObject objects[count];
-	
+	//xtl::packed_array<UGameObject, Allocator> reg(&alloc);
+
 
 	for (int i = 0; i < count; i++)
 	{

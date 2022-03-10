@@ -311,7 +311,7 @@ public class XtlLibrary : Project
         RootPath = @"[project.SharpmakeCsPath]\xtl";
 
         AddTargets(new Target(
-            Platform.win64,
+            Platform.win64 | Platform.orbis,
             DevEnv.vs2019,
             Optimization.Debug | Optimization.Release,
             OutputType.Lib));
@@ -331,7 +331,7 @@ public class XtlLibrary : Project
 
         //conf.SourceFilesBuildExcludeRegex.Add(@"[project.SourceRootPath]\backend\directx\*");
         
-        if (target.Platform == Platform.win64)
+        if (target.Platform == Platform.win64 | Platform.orbis)
         {
             conf.Options.Add(Sharpmake.Options.Vc.General.WindowsTargetPlatformVersion.Latest);
             conf.Options.Add(Sharpmake.Options.Vc.Compiler.CppLanguageStandard.CPP17);
@@ -360,7 +360,7 @@ public class TestProject : Project
         RootPath = @"[project.SharpmakeCsPath]\test";
 
         AddTargets(new Target(
-           Platform.win64,
+           Platform.win64 | Platform.orbis,
            DevEnv.vs2019,
            Optimization.Debug | Optimization.Release));
 
@@ -403,7 +403,7 @@ public class XtlSolution : Solution
         // As with the project, define which target this solution builds for.
         // It's usually the same thing.
         AddTargets(new Target(
-            Platform.win64,
+            Platform.win64 | Platform.orbis,
             DevEnv.vs2019,
             Optimization.Debug | Optimization.Release));
     }
