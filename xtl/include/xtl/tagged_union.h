@@ -17,7 +17,7 @@ namespace xtl
 		template <typename Type1, typename... Types>
 		struct sizeof_largest<Type1, Types...>
 		{
-			static constexpr size_t value = sizeof(Type1) < alignof_types<Types...>::value ? alignof_types<Types...>::value : sizeof(Type1);
+			static constexpr size_t value = sizeof(Type1) < sizeof_largest<Types...>::value ? sizeof_largest<Types...>::value : sizeof(Type1);
 		};
 
 		template <typename Type1, typename Type2>
@@ -41,7 +41,7 @@ namespace xtl
 		template <typename Type1, typename... Types>
 		struct sizeof_types<Type1, Types...>
 		{
-			static constexpr size_t value = sizeof(Type) + sizeof_types<Types...>::value;
+			static constexpr size_t value = sizeof(Type1) + sizeof_types<Types...>::value;
 		};
 
 		template <typename... Types>
